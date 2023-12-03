@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Transformation</title>
+    <style>
+        body {
+            background-image: url('https://allfreedesigns.com/wp-content/uploads/2015/06/black-patterns-1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        select {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .image-section {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .image-container img {
+            width: 300px;
+            border: 2px solid white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Image Transformation</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept=".jpg, .jpeg, .png" required>
+        <br>
+        <label for="transformation_type">Chọn kiểu:</label>
+        <select name="transformation_type" id="transformation_type">
+            <option value="negative">Âm bản</option>
+            <option value="threshold">Ngưỡng</option>
+            <option value="gray">Tuyến tính</option>
+            <option value="logarithm">logarithm</option>
+            <option value="power">Mũ</option>
+        </select>
+        <br>
+        <input type="submit" value="Biến đổi">
+    </form>
+
+    {% if original_image_path and transformed_image_path %}
+    <div class="image-section">
+        <div class="image-container">
+            <h2>Ảnh Gốc</h2>
+            <img src="{{ original_image_path }}" alt="Original Image">
+        </div>
+        
+        <div class="image-container">
+            <h2>Ảnh Sau Biến Đổi</h2>
+            <img src="{{ transformed_image_path }}" alt="Transformed Image">
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
